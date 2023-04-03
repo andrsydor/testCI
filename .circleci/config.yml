@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@1.5.0
+  jq: circleci/jq@2.2.0
 
 executors:
   pyex:
@@ -29,7 +30,22 @@ jobs:
           name: Run main
           command: python main.py
 
+  detect_pr:
+    executor: pyex
+    steps:
+      - jq/install
+      - run:
+          name: Detect Branches
+          command: |
+            if [[ "$CIRCLE_PULL_REQUEST" != "" ]];
+            then
+              echo "# Pull request $CIRCLE_PULL_REQUEST"
+            else
+              echo "# Pull request not found."
+            fi
+
 workflows:
   sample:
     jobs:
+      - detect_pr
       - build-and-test
