@@ -37,6 +37,7 @@ jobs:
       - run:
           name: Detect Branches
           command: |
+            echo "Test pull request build"
             if [[ "$CIRCLE_PULL_REQUEST" != "" ]];
             then
               echo "# Pull request $CIRCLE_PULL_REQUEST"
