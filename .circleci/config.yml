@@ -32,6 +32,7 @@ jobs:
     executor: pyex
     steps:
       - checkout
+      - currnt-branch-print
       - python/install-packages:
           pkg-manager: pip
           # app-dir: ~/project/package-directory/
@@ -46,5 +47,4 @@ workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - currnt-branch-print
       - build-and-test
