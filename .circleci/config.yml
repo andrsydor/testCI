@@ -8,21 +8,16 @@ executors:
     docker:
       - image: cimg/python:3.10.2
 
-jobs:
-  # check-destination-branch-is-allowed:
-  #   steps:
-  #     -run:
-  #       name: check destination
-  #       command: |
+commands:
   currnt-branch-print:
-    executor: pyex
     steps:
-      -run:
-        name: "current branch"
-        command: |
-          echo "a"
+      - run:
+          name: Current branch
+          command: |
+            echo "current branch"
+            echo << pipeline.git.branch >>
 
-
+jobs:
   build-and-test:
     # These next lines defines a Docker executors: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of the convenience images from CircleCI's Developer Hub
@@ -51,4 +46,5 @@ workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
+      - currnt-branch-print
       - build-and-test
