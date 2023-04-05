@@ -18,7 +18,7 @@ commands:
             echo "current branch"
             echo << pipeline.git.branch >>
             echo << pipeline.git.revision >>
-            echo ${<< pipeline.git.revision >>::6}
+            echo ${pipeline.git.revision::6}
 
 jobs:
   build-and-test:
