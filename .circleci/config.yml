@@ -19,9 +19,9 @@ commands:
             echo << pipeline.git.branch >>
             echo << pipeline.git.revision >>
             SHA = "<< pipeline.git.revision >>"
-            echo SHA
+            echo ${SHA}
             SHORTSHA="${SHA:0:7}"
-            echo SHORTSHA
+            echo ${SHORTSHA}
 
 jobs:
   build-and-test:
