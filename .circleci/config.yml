@@ -18,7 +18,10 @@ commands:
             echo "current branch"
             echo << pipeline.git.branch >>
             echo << pipeline.git.revision >>
-            echo ${pipeline.git.revision::6}
+            SHA=$(<< pipeline.git.revision >>)
+            echo $SHA
+            SHORTSHA="${SHA:0:7}"
+            echo $SHORTSHA
 
 jobs:
   build-and-test:
