@@ -19,7 +19,7 @@ commands:
             echo << pipeline.git.branch >>
             echo << pipeline.git.revision >>
             echo $(echo "<< pipeline.git.revision >>" | cut -c -7)
-            git rev-parse --short HEAD
+            echo $(git rev-parse --short HEAD)
 
 jobs:
   build-and-test:
