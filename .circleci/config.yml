@@ -18,7 +18,7 @@ commands:
             echo "current branch"
             echo << pipeline.git.branch >>
             echo << pipeline.git.revision >>
-            echo << pipeline.git.revision >>
+            echo $(echo "<< pipeline.git.revision >>" | cut -c -6)
 
 jobs:
   build-and-test:
